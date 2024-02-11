@@ -124,15 +124,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'movie', 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'movie', 'static'),
+# )
 
 # collect static file for deployment
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-# STATIC_ROOT = BASE_DIR.joinpath('static')
+STATIC_ROOT = BASE_DIR.joinpath('static')
 
 
 # Default primary key field type
