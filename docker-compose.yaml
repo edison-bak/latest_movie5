@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./movie/dockerfile
+    volumes:
+      - ./movie:/app
+    ports:
+      - 8000:8000
+    command: gunicorn movie.wsgi --bind 0.0.0.0:8000
+    depends_on:
+      - db
+      - nginx
+
+  db:
+    image: postgres
+    volumes:
+      - postgresDB:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgrespw
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./movie/nginx/dockerfile
+    volumes:
+      - ./movie/static:/static
+    ports:
+      - 80:80
+
+volumes:
+  postgresDB:
